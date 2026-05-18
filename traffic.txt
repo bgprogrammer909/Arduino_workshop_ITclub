@@ -1,0 +1,29 @@
+// Single traffic light with PWM - Smooth fading effects
+int redPin = 9;      // Regular pin (no PWM needed for on/off)
+int yellowPin = 10;   // PWM pin (for smooth effects)
+int greenPin = 11;    // Regular pin
+
+void setup() {
+  pinMode(redPin, OUTPUT);
+  pinMode(yellowPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+  Serial.begin(9600);
+  Serial.println("Traffic Light with PWM Effects");
+}
+
+void loop() {
+  analogWrite(redPin,80);
+  analogWrite(yellowPin,0);
+  analogWrite(greenPin,0);
+  delay(4000);
+  
+   analogWrite(redPin,0);
+  analogWrite(yellowPin,0);
+  analogWrite(greenPin,80);
+  delay(4000);
+  
+    analogWrite(redPin,0);
+  analogWrite(yellowPin,80);
+  analogWrite(greenPin,0);
+  delay(2000);
+}
