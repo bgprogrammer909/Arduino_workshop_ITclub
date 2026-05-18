@@ -1,0 +1,28 @@
+// Automatic Night Light with LDR
+// When dark → LED turns ON
+// When bright → LED turns OFF
+
+int ldrPin = A0;      // LDR connected to analog pin A0
+int ledPin = 9;       // LED connected to pin 9 (PWM for brightness control)
+int threshold = 500; // t this value (0=dark, 1023=bright)
+
+void setup() {
+  pinMode(ledPin, INPUT);
+  Serial.begin(9600);  // Optional: to monitor LDR values
+}
+
+void loop() {
+  int ldrValue = analogRead(ldrPin);  // Read LDR value (0-1023)
+  
+  Serial.println(ldrValue);  // Monitor in Serial Monitor
+  
+  if (ldrValue < threshold) {
+    // Dark → Turn LED ON
+    analogWrite(ledPin, 50);
+  } else {
+    // Bright → Turn LED OFF
+    analogWrite(ledPin, 0);
+  }
+  
+  delay(100);  // Small delay for stability
+}
